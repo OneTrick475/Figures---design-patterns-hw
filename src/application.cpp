@@ -1,8 +1,6 @@
-#include <cstdlib>
 #include <iostream>
 #include <filesystem>
-
-#include "library.h"
+#include <figures/Triangle.h>;
 
 namespace fs = std::filesystem;
 
@@ -33,6 +31,5 @@ int main(int argc, char* argv[])
 		return 2;
 	}
 
-	int value = std::atoi(argv[1]);
-	std::cout << value << "! = " << fibonacci(value) << std::endl;
+	
 }

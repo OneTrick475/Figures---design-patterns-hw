@@ -8,7 +8,12 @@ target_sources(
     PRIVATE
         "library.cpp"
         "library.h"
- "figures/Triangle.h")
+        "figures/Triangle.h"
+        "figures/Triangle.cpp" 
+        "doubleEQ.cpp"
+        "figures/Rectangle.h"
+        "figures/Rectangle.cpp"
+)
 
 
 # Executable target for the application
@@ -26,4 +31,7 @@ target_sources(
     application
     PRIVATE
         "application.cpp"
- "figures/Triangle.h")
+        "figures/Triangle.h"    
+        "doubleEQ.cpp"
+        "figures/Rectangle.h"
+    )
