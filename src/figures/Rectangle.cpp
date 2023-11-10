@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include <iostream>
+#include <sstream>
 #include "Figure.h"
 #include "../doubleEQ.h"
 
@@ -17,6 +18,12 @@ Rectangle::Rectangle(double a, double b) {
 
 double Rectangle::perimeter() const {
 	return a + b;
+}
+
+std::string Rectangle::ToString() const {
+	std::ostringstream ss;
+	ss << a << ' ' << b;
+	return "rectangle " + ss.str();
 }
 
 bool Rectangle::operator==(const Rectangle& other) const {

@@ -1,7 +1,9 @@
 #include "Triangle.h"
 #include <iostream>
+#include <sstream>
 #include "Figure.h"
-#include "../doubleEQ.h"
+#include "../doubleEQ.h"\
+
 
 Figure* Triangle::clone() const {
 	return new Triangle(*this);
@@ -22,4 +24,10 @@ double Triangle::perimeter() const {
 
 bool Triangle::operator==(const Triangle& other) const {
 	return doublesEQ(a, other.a) && doublesEQ(b, other.b) && doublesEQ(c, other.c);
+}
+
+std::string Triangle::ToString() const {
+	std::ostringstream ss;
+	ss << a << ' ' << b << ' ' << c;
+	return "triangle " + ss.str();
 }

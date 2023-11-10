@@ -6,6 +6,8 @@ public:
 
 	virtual double perimeter() const = 0;
 
+	virtual std::string ToString() const = 0;
+
 	virtual ~Figure() = default;
 };
 

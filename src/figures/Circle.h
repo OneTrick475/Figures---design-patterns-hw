@@ -2,13 +2,12 @@
 #include <string>
 #include "Figure.h"
 
-class Rectangle : public Figure {
-	double a = 1;
-	double b = 1;
+class Circle : public Figure {
+	double r = 1;
 
 public:
-	Rectangle() = default;
-	Rectangle(double a, double b);
+	Circle() = default;
+	Circle(double r);
 
 	Figure* clone() const override;
 
@@ -16,5 +15,5 @@ public:
 
 	std::string ToString() const override;
 
-	bool operator==(const Rectangle& other) const;
+	bool operator==(const Circle& other) const;
 };

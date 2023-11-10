@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Figure.h"
 
 class Triangle : public Figure {
@@ -13,6 +14,8 @@ public:
 	Figure* clone() const override;
 
 	double perimeter() const override;
+
+	std::string ToString() const override;
 
 	bool operator==(const Triangle& other) const;
 };

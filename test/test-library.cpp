@@ -1,4 +1,6 @@
+#include <corecrt_math_defines.h>
 #include "catch2/catch_all.hpp"
+#include "figures/Circle.h"
 #include "figures/Rectangle.h"
 #include "figures/Triangle.h"
 
@@ -56,7 +58,11 @@ TEST_CASE("Triangle parameter is calculated correctly") {
 	REQUIRE_THAT(result, Catch::Matchers::WithinRel(expected, 0.001));
 }
 
+TEST_CASE("Triangle toString works correctly") {
+	Triangle tri(1, 2, 3.5);
 
+	REQUIRE(tri.ToString() == "triangle 1 2 3.5");
+}
 
 TEST_CASE("Rectangle constructor orders parameters")
 {
@@ -110,4 +116,62 @@ TEST_CASE("Rectangle parameter is calculated correctly") {
 	double expected = 1 + 2.5;
 
 	REQUIRE_THAT(result, Catch::Matchers::WithinRel(expected, 0.001));
+}
+
+TEST_CASE("Rectangle toString works correctly") {
+	Rectangle rec(1, 3.5);
+
+	REQUIRE(rec.ToString() == "rectangle 1 3.5");
+}
+
+
+void createCircle(double r) {
+	Circle circle(r);
+}
+
+TEST_CASE("Circle constructor throws on invalid arg") {
+	SECTION("0 arg") {
+		REQUIRE_THROWS_AS(createCircle(0), std::invalid_argument);
+	}
+	SECTION("negative arg") {
+		REQUIRE_THROWS_AS(createCircle(-1), std::invalid_argument);
+	}
+}
+
+TEST_CASE("Circle == works correctly")
+{
+	SECTION("different circles") {
+		Circle first(1);
+		Circle second(2);
+
+		REQUIRE(!(first == second));
+	}
+	SECTION("same circles") {
+		Circle first(1);
+		Circle second(1);
+
+		REQUIRE(first == second);
+	}
+}
+
+TEST_CASE("Circle clone works correctly")
+{
+	Circle first(1);
+	Figure* second = first.clone();
+
+	REQUIRE(first == *dynamic_cast<Circle*>(second));
+}
+
+TEST_CASE("Circle parameter is calculated correctly") {
+	Circle rec(2.5);
+	double result = rec.perimeter();
+	double expected = 2 * M_PI * 2.5;
+
+	REQUIRE_THAT(result, Catch::Matchers::WithinRel(expected, 0.001));
+}
+
+TEST_CASE("Circle toString works correctly") {
+	Circle circle( 3.5);
+
+	REQUIRE(circle.ToString() == "circle 3.5");
 }
