@@ -1,6 +1,7 @@
 #include <corecrt_math_defines.h>
 #include "catch2/catch_all.hpp"
 #include "figures/Circle.h"
+#include "figures/FigureFactory.h"
 #include "figures/Rectangle.h"
 #include "figures/Triangle.h"
 
@@ -174,4 +175,23 @@ TEST_CASE("Circle toString works correctly") {
 	Circle circle( 3.5);
 
 	REQUIRE(circle.ToString() == "circle 3.5");
+}
+
+
+TEST_CASE("Figure factory from string") {
+	SECTION("create triangle") {
+		auto tri = FigureFactory::createFigureFromStr("triangle 1 2 3.5");
+		Triangle expected(1, 2, 3.5);
+		REQUIRE(expected == *dynamic_cast<Triangle*>(tri.get()));
+	}
+	SECTION("create rectangle") {
+		auto rec = FigureFactory::createFigureFromStr("rectangle 1 2");
+		Rectangle expected(1, 2);
+		REQUIRE(expected == *dynamic_cast<Rectangle*>(rec.get()));
+	}
+	SECTION("create triangle") {
+		auto circle = FigureFactory::createFigureFromStr("circle 1");
+		Circle expected(1);
+		REQUIRE(expected == *dynamic_cast<Circle*>(circle.get()));
+	}
 }
