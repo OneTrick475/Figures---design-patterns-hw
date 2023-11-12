@@ -1,6 +1,8 @@
 #include <iostream>
 #include <filesystem>
-#include <figures/Triangle.h>;
+#include <thread>
+
+#include "figures/RandomFigureFactory.h"
 
 namespace fs = std::filesystem;
 
@@ -19,17 +21,14 @@ void displayUsage(const char* executablePath)
 	}
 }
 
-int main(int argc, char* argv[])
+int main()
 {
-	if (argc <= 0) {
-		std::cout << "Invalid argument list!\n";
-		return 1;
-	}
-	
-	if (argc != 2) {
-		displayUsage(argv[0]);
-		return 2;
-	}
+	RandomFigureFactory* fac = new RandomFigureFactory();
 
-	
+	int i = 0;
+	while (i++ < 100) {
+		auto fig = fac->createFigure();
+
+		std::cout << fig.get()->ToString() << '\n';
+	}
 }

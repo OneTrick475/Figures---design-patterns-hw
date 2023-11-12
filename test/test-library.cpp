@@ -4,9 +4,10 @@
 #include "figures/FigureFactory.h"
 #include "figures/Rectangle.h"
 #include "figures/Triangle.h"
+#include <memory>
+#include "figures/StreamFigureFactory.h"
 
-TEST_CASE("Triangle constructor orders parameters")
-{
+TEST_CASE("Triangle constructor orders parameters") {
 	Triangle first(1, 2, 3);
 	Triangle second(2, 3, 1);
 	Triangle third(3, 1, 2);
@@ -195,3 +196,56 @@ TEST_CASE("Figure factory from string") {
 		REQUIRE(expected == *dynamic_cast<Circle*>(circle.get()));
 	}
 }
+
+TEST_CASE("Figure factory throws on invalid input") {
+	SECTION("invalid figure") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("luffy 2 2 2"), std::invalid_argument);
+	}
+	SECTION("not enough sides tri") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("triangle 2 2 "), std::invalid_argument);
+	}
+	SECTION("not enough sides tri 2") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("triangle  "), std::invalid_argument);
+	}
+	SECTION("not enough sides rec") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("rectangle 2 "), std::invalid_argument);
+	}
+	SECTION("not enough sides rec 2") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("rectangle  "), std::invalid_argument);
+	}
+	SECTION("not radius") {
+		REQUIRE_THROWS_AS(FigureFactory::createFigureFromStr("circle "), std::invalid_argument);
+	}
+}
+
+
+TEST_CASE("Stream figure factory") {
+	SECTION("create triangle") {
+		std::stringstream ss("triangle 1 2 3.5");
+
+		std::unique_ptr<FigureFactory> factory = std::make_unique<StreamFigureFactory>(StreamFigureFactory(ss));
+
+		auto tri = factory.get()->createFigure();
+		Triangle expected(1, 2, 3.5);
+		REQUIRE(expected == *dynamic_cast<Triangle*>(tri.get()));
+	}
+	SECTION("create rectangle") {
+		std::stringstream ss("rectangle 1 2");
+
+		std::unique_ptr<FigureFactory> factory = std::make_unique<StreamFigureFactory>(StreamFigureFactory(ss));
+
+		auto rec = factory.get()->createFigure();
+		Rectangle expected(1, 2);
+		REQUIRE(expected == *dynamic_cast<Rectangle*>(rec.get()));
+	}
+	SECTION("create circle") {
+		std::stringstream ss("circle 1");
+
+		std::unique_ptr<FigureFactory> factory = std::make_unique<StreamFigureFactory>(StreamFigureFactory(ss));
+
+		auto circle = factory.get()->createFigure();
+		Circle expected(1);
+		REQUIRE(expected == *dynamic_cast<Circle*>(circle.get()));
+	}
+}
+
