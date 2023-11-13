@@ -1,0 +1,2 @@
+triangle 2 2 2
+circle 1

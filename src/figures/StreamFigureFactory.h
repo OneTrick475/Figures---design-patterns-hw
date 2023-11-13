@@ -3,10 +3,11 @@
 #include <iostream>
 
 class StreamFigureFactory : public FigureFactory {
-	std::istream& input;
+	std::istream& input = std::cin;
 
 public:
+	StreamFigureFactory() = default;
 	StreamFigureFactory(std::istream& input);
 
-	std::unique_ptr<Figure> createFigure() override;
+	virtual std::unique_ptr<Figure> createFigure() override;
 };

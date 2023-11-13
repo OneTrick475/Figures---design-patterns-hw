@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <thread>
 
+#include "figures/FigureFactoryFactory.h"
 #include "figures/RandomFigureFactory.h"
 
 namespace fs = std::filesystem;
@@ -23,12 +24,7 @@ void displayUsage(const char* executablePath)
 
 int main()
 {
-	RandomFigureFactory* fac = new RandomFigureFactory();
+	std::unique_ptr<FigureFactory> fac = FigureFactoryFactory::create("file");
 
-	int i = 0;
-	while (i++ < 100) {
-		auto fig = fac->createFigure();
-
-		std::cout << fig.get()->ToString() << '\n';
-	}
+	std::cout << fac.get()->createFigure()->ToString();
 }
