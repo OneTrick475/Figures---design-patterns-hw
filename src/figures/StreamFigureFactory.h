@@ -8,6 +8,7 @@ class StreamFigureFactory : public FigureFactory {
 public:
 	StreamFigureFactory() = default;
 	StreamFigureFactory(std::istream& input);
+	StreamFigureFactory(std::istream&& input);
 
 	virtual std::unique_ptr<Figure> createFigure() override;
 };

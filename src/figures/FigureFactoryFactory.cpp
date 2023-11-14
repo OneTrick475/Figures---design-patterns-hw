@@ -1,6 +1,5 @@
 #include "FigureFactoryFactory.h"
 #include <fstream>
-#include "FileStreamFigureFactory.h"
 #include "RandomFigureFactory.h"
 #include "StreamFigureFactory.h"
 
@@ -15,8 +14,9 @@ std::unique_ptr<FigureFactory> FigureFactoryFactory::create(const std::string ty
 	if (type == "file") {
 		std::string fileName;
 		std::cin >> fileName;
+		std::ifstream file(fileName);
 
-		return std::make_unique<FileStreamFigureFactory>(FileStreamFigureFactory(fileName));
+		return std::make_unique<StreamFigureFactory>(StreamFigureFactory(std::move(file)));
 	}
 	throw std::invalid_argument("invalid factory type");
 }
