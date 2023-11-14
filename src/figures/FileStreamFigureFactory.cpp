@@ -3,11 +3,7 @@
 #include <iostream>
 
 FileStreamFigureFactory::FileStreamFigureFactory(const std::string& fileName) {
-	std::ifstream file(fileName);
-	std::string str;
-	file >> str;
-	file >> str;
-	std::cout << str;
+	file = std::make_unique<std::ifstream>(std::ifstream(fileName));
 }
 
 std::unique_ptr<Figure> FileStreamFigureFactory::createFigure() {

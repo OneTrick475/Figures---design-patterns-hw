@@ -6,7 +6,9 @@
 #include "figures/Triangle.h"
 #include <memory>
 #include "figures/StreamFigureFactory.h"
-
+#include <fstream>
+#include <figures/FigureFactoryFactory.h>
+	
 TEST_CASE("Triangle constructor orders parameters") {
 	Triangle first(1, 2, 3);
 	Triangle second(2, 3, 1);
@@ -248,4 +250,6 @@ TEST_CASE("Stream figure factory") {
 		REQUIRE(expected == *dynamic_cast<Circle*>(circle.get()));
 	}
 }
+
+
 

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <filesystem>
 #include <thread>
-
+#include <fstream>
 #include "figures/FigureFactoryFactory.h"
 #include "figures/RandomFigureFactory.h"
+#include <figures/FileStreamFigureFactory.h>
 
 namespace fs = std::filesystem;
 
@@ -24,7 +25,8 @@ void displayUsage(const char* executablePath)
 
 int main()
 {
-	std::unique_ptr<FigureFactory> fac = FigureFactoryFactory::create("file");
+	std::unique_ptr<FigureFactory> fac = std::make_unique<FileStreamFigureFactory>(
+		"C:\\Users\\Ivan Bukev\\Source\\Repos\\Figures---design-patterns-hw3\\src\\figures.txt") ;
 
 	std::cout << fac.get()->createFigure()->ToString();
 }
