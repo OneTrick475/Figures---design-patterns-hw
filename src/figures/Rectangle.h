@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Figure.h"
+#include <memory>
 
 class Rectangle : public Figure {
 	double a = 1;
@@ -10,7 +11,7 @@ public:
 	Rectangle() = default;
 	Rectangle(double a, double b);
 
-	Figure* clone() const override;
+	std::unique_ptr<Figure> clone() const override;
 
 	double perimeter() const override;
 

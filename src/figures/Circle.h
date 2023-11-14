@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Figure.h"
+#include <memory>
 
 class Circle : public Figure {
 	double r = 1;
@@ -9,7 +10,7 @@ public:
 	Circle() = default;
 	Circle(double r);
 
-	Figure* clone() const override;
+	std::unique_ptr<Figure> clone() const override;
 
 	double perimeter() const override;
 

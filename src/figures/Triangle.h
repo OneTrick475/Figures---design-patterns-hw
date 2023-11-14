@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Figure.h"
+#include <memory>
 
 class Triangle : public Figure {
 	double a = 1;
@@ -11,7 +12,7 @@ public:
 	Triangle() = default;
 	Triangle(double a, double b, double c);
 
-	Figure* clone() const override;
+	std::unique_ptr<Figure> clone() const override;
 
 	double perimeter() const override;
 

@@ -3,7 +3,7 @@
 
 class Figure {
 public:
-	virtual Figure* clone() const = 0;
+	virtual std::unique_ptr<Figure> clone() const = 0;
 
 	virtual double perimeter() const = 0;
 

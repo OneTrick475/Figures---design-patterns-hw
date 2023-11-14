@@ -5,8 +5,8 @@
 #include "../doubleEQ.h"\
 
 
-Figure* Triangle::clone() const {
-	return new Triangle(*this);
+std::unique_ptr<Figure> Triangle::clone() const {
+	return std::make_unique<Triangle>(Triangle(*this));
 }
 
 Triangle::Triangle(double a, double b, double c) {

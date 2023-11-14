@@ -4,8 +4,8 @@
 #include "Figure.h"
 #include "../doubleEQ.h"
 
-Figure* Rectangle::clone() const {
-	return new Rectangle(*this);
+std::unique_ptr<Figure> Rectangle::clone() const {
+	return std::make_unique<Rectangle>(Rectangle(*this));
 }
 
 Rectangle::Rectangle(double a, double b) {

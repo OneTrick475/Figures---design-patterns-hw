@@ -49,9 +49,9 @@ TEST_CASE("Triangle == works correctly")
 TEST_CASE("Triangle clone works correctly")
 {
 		Triangle first(1, 2, 3);
-		Figure* second = first.clone();
+		std::unique_ptr<Figure> second = first.clone();
 
-		REQUIRE(first == *dynamic_cast<Triangle*>(second));
+		REQUIRE(first == *dynamic_cast<Triangle*>(second.get()));
 }
 
 TEST_CASE("Triangle parameter is calculated correctly") {
@@ -109,9 +109,9 @@ TEST_CASE("Rectangle == works correctly")
 TEST_CASE("Rectangle clone works correctly")
 {
 	Rectangle first(1, 2);
-	Figure* second = first.clone();
+	std::unique_ptr<Figure> second = first.clone();
 
-	REQUIRE(first == *dynamic_cast<Rectangle*>(second));
+	REQUIRE(first == *dynamic_cast<Rectangle*>(second.get()));
 }
 
 TEST_CASE("Rectangle parameter is calculated correctly") {
@@ -161,9 +161,9 @@ TEST_CASE("Circle == works correctly")
 TEST_CASE("Circle clone works correctly")
 {
 	Circle first(1);
-	Figure* second = first.clone();
+	std::unique_ptr<Figure> second = first.clone();
 
-	REQUIRE(first == *dynamic_cast<Circle*>(second));
+	REQUIRE(first == *dynamic_cast<Circle*>(second.get()));
 }
 
 TEST_CASE("Circle parameter is calculated correctly") {

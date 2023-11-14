@@ -13,7 +13,7 @@ target_sources(
         "doubleEQ.cpp"
         "figures/Rectangle.h"
         "figures/Rectangle.cpp"
- "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp" "figures/FileStreamFigureFactory.h" "figures/FileStreamFigureFactory.cpp")
+ "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp")
 
 
 # Executable target for the application

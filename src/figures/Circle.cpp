@@ -6,8 +6,8 @@
 #include <math.h>
 #include <sstream>
 
-Figure* Circle::clone() const {
-	return new Circle(*this);
+std::unique_ptr<Figure> Circle::clone() const {
+	return std::make_unique<Circle>(Circle(*this));
 }
 
 Circle::Circle(double r) {
