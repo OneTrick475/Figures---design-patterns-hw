@@ -1,6 +1,5 @@
 #include "FigureFactoryFactory.h"
 #include <fstream>
-
 #include "FileStreamFigureFactory.h"
 #include "RandomFigureFactory.h"
 #include "StreamFigureFactory.h"

@@ -2,10 +2,11 @@
 #include "FigureFactory.h"
 #include "StreamFigureFactory.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 
-class FileStreamFigureFactory : public StreamFigureFactory {
-	std::unique_ptr<std::ifstream> file;
+class FileStreamFigureFactory : public FigureFactory {
+	std::ifstream file;
 
 public:
 	FileStreamFigureFactory(const std::string& fileName);
