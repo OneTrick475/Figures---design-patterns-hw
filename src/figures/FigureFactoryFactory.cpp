@@ -13,15 +13,15 @@ std::unique_ptr<FigureFactory> FigureFactoryFactory::create(const std::string ty
 	}
 	if (type == "file") {
 		std::string fileName;
-		is >> fileName;
-		std::string fileName2 = "C:\\Users\\Ivan Bukev\\source\\repos\\Figures---design-patterns-hw3\\src\\test.txt";
-		std::ifstream file(fileName2);
+		std::getline(is, fileName);
+		std::ifstream file(fileName);
 
 		if (!file.is_open()) {
 			throw std::runtime_error("couldnt open file");
 		}
 
-		return std::make_unique<StreamFigureFactory>(StreamFigureFactory(std::move(file)));
+
+		return std::unique_ptr<StreamFigureFactory>(new StreamFigureFactory(std::move(file)));
 	}
 	throw std::invalid_argument("invalid factory type");
 }

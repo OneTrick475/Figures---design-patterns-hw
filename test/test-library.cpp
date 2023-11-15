@@ -256,11 +256,11 @@ TEST_CASE("Stream figure factory") {
 
 TEST_CASE("Abstract factory") {
 	SECTION("creates stream factory that works") {
-		std::ofstream os("C:\\Users\\Ivan Bukev\\source\\repos\\Figures---design-patterns-hw3\\src\\test.txt");
+		std::ofstream os("D:\\test.txt");
 		os << "triangle 2.1 2.3 3.1\ncircle 1.1";
 		os.close();
 
-		std::stringstream ss("test.txt");
+		std::stringstream ss("D:\\test.txt");
 		auto fac = FigureFactoryFactory::create("file", ss);
 		auto tri = fac.get()->createFigure();
 		auto circle = fac.get()->createFigure();

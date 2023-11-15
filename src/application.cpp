@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <thread>
 #include <fstream>
+#include <sstream>
+
 #include "figures/FigureFactoryFactory.h"
 #include "figures/RandomFigureFactory.h"
 #include <figures/StreamFigureFactory.h>
@@ -25,8 +27,9 @@ void displayUsage(const char* executablePath)
 
 int main()
 {
-	std::unique_ptr<FigureFactory> fac = std::make_unique<StreamFigureFactory>(
-		"C:\\Users\\Ivan Bukev\\Source\\Repos\\Figures---design-patterns-hw3\\src\\figures.txt") ;
+	std::stringstream file("C:\\Users\\Ivan Bukev\\Desktop\\simple\\src\\test.txt");
+
+	std::unique_ptr<FigureFactory> fac = FigureFactoryFactory::create("file", file);
 
 	std::cout << fac.get()->createFigure()->ToString();
 }
