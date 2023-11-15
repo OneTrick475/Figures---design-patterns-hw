@@ -10,9 +10,9 @@
 #include <figures/FigureFactoryFactory.h>
 	
 TEST_CASE("Triangle constructor orders parameters") {
-	Triangle first(1, 2, 3);
-	Triangle second(2, 3, 1);
-	Triangle third(3, 1, 2);
+	Triangle first(4, 2, 3);
+	Triangle second(2, 3, 4);
+	Triangle third(3, 4, 2);
 
 	REQUIRE((first == second && first == third));
 }
@@ -28,19 +28,22 @@ TEST_CASE("Triangle constructor throws on invalid arg") {
 	SECTION("negative arg") {
 		REQUIRE_THROWS_AS(createTri(1, -1, 2), std::invalid_argument);
 	}
+	SECTION("inequality of the triangle") {
+		REQUIRE_THROWS_AS(createTri(1, 1, 2), std::invalid_argument);
+	}
 }
 
 TEST_CASE("Triangle == works correctly")
 {
 	SECTION("different triangles") {
-		Triangle first(1, 2, 3);
+		Triangle first(2, 2, 3);
 		Triangle second(5, 6, 6);
 
 		REQUIRE(!(first == second));
 	}
 	SECTION("same triangles") {
-		Triangle first(1, 2, 3);
-		Triangle second(1, 2, 3);
+		Triangle first(2, 2, 3);
+		Triangle second(2, 2, 3);
 
 		REQUIRE(first == second);
 	}
@@ -48,24 +51,24 @@ TEST_CASE("Triangle == works correctly")
 
 TEST_CASE("Triangle clone works correctly")
 {
-		Triangle first(1, 2, 3);
+		Triangle first(2, 2, 3);
 		std::unique_ptr<Figure> second = first.clone();
 
 		REQUIRE(first == *dynamic_cast<Triangle*>(second.get()));
 }
 
 TEST_CASE("Triangle parameter is calculated correctly") {
-	Triangle tri(1, 2, 3.5);
+	Triangle tri(2, 2, 3.5);
 	double result = tri.perimeter();
-	double expected = 1 + 2 + 3.5;
+	double expected = 2 + 2 + 3.5;
 
 	REQUIRE_THAT(result, Catch::Matchers::WithinRel(expected, 0.001));
 }
 
 TEST_CASE("Triangle toString works correctly") {
-	Triangle tri(1, 2, 3.5);
+	Triangle tri(2, 2, 3.5);
 
-	REQUIRE(tri.ToString() == "triangle 1 2 3.5");
+	REQUIRE(tri.ToString() == "triangle 2 2 3.5");
 }
 
 TEST_CASE("Rectangle constructor orders parameters")
@@ -186,8 +189,8 @@ TEST_CASE("Polymorphic == for figure") {
 
 TEST_CASE("Figure factory from string") {
 	SECTION("create triangle") {
-		auto tri = FigureFactory::createFigureFromStr("triangle 1 2 3.5");
-		Triangle expected(1, 2, 3.5);
+		auto tri = FigureFactory::createFigureFromStr("triangle 3 2 3.5");
+		Triangle expected(3, 2, 3.5);
 		REQUIRE(expected == *dynamic_cast<Triangle*>(tri.get()));
 	}
 	SECTION("create rectangle") {
@@ -226,12 +229,12 @@ TEST_CASE("Figure factory throws on invalid input") {
 
 TEST_CASE("Stream figure factory") {
 	SECTION("create triangle") {
-		std::stringstream ss("triangle 1 2 3.5");
+		std::stringstream ss("triangle 3 2 3.5");
 
 		std::unique_ptr<FigureFactory> factory = std::make_unique<StreamFigureFactory>(StreamFigureFactory(ss));
 
 		auto tri = factory.get()->createFigure();
-		Triangle expected(1, 2, 3.5);
+		Triangle expected(3, 2, 3.5);
 		REQUIRE(expected == *dynamic_cast<Triangle*>(tri.get()));
 	}
 	SECTION("create rectangle") {

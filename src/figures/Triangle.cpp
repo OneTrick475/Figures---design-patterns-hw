@@ -16,6 +16,10 @@ Triangle::Triangle(double a, double b, double c) {
 	this->c = std::max(a, std::max(b, c));
 	this->a = std::min(a, std::min(b, c));
 	this->b = a + b + c - this->a - this->c;
+
+	if(this->a + this->b <= this->c) {
+		throw std::invalid_argument("inequality of the triangle is broken");
+	}
 }
 
 double Triangle::perimeter() const {
