@@ -3,6 +3,7 @@
 #include "Figure.h"
 #include <string>
 
+
 class FigureFactory {
 public:
 	static std::unique_ptr<Figure> createFigureFromStr(const std::string& str);

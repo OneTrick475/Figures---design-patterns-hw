@@ -31,3 +31,13 @@ std::string Triangle::ToString() const {
 	ss << a << ' ' << b << ' ' << c;
 	return "triangle " + ss.str();
 }
+
+bool Triangle::operator==(Figure* other) const {
+	Triangle* tri = dynamic_cast<Triangle*>(other);
+
+	if (!tri) {
+		return false;
+	}
+
+	return *this == *tri;
+}

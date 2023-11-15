@@ -1,14 +1,15 @@
 #pragma once
 #include "FigureFactory.h"
 #include <iostream>
+#include <fstream>
 
 class StreamFigureFactory : public FigureFactory {
-	std::istream& input = std::cin;
-
+	std::ifstream file;
+	std::istream& input;
+	
 public:
-	StreamFigureFactory() = default;
 	StreamFigureFactory(std::istream& input);
-	StreamFigureFactory(std::istream&& input);
+	StreamFigureFactory(std::ifstream&& fileRef);
 
 	virtual std::unique_ptr<Figure> createFigure() override;
 };

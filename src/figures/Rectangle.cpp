@@ -29,3 +29,13 @@ std::string Rectangle::ToString() const {
 bool Rectangle::operator==(const Rectangle& other) const {
 	return doublesEQ(a, other.a) && doublesEQ(b, other.b);
 }
+
+bool Rectangle::operator==(Figure* other) const {
+	Rectangle* rec = dynamic_cast<Rectangle*>(other);
+
+	if (!rec) {
+		return false;
+	}
+
+	return *this == *rec;
+}

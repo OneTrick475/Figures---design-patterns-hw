@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <memory>
 
 class Figure {
 public:
@@ -8,6 +9,8 @@ public:
 	virtual double perimeter() const = 0;
 
 	virtual std::string ToString() const = 0;
+
+	virtual bool operator==(Figure* other) const = 0;
 
 	virtual ~Figure() = default;
 };

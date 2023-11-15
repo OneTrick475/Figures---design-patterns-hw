@@ -30,3 +30,13 @@ std::string Circle::ToString() const {
 bool Circle::operator==(const Circle& other) const {
 	return doublesEQ(r, other.r) ;
 }
+
+bool Circle::operator==(Figure* other) const {
+	Circle* circle = dynamic_cast<Circle*>(other);
+
+	if (!circle) {
+		return false;
+	}
+
+	return *this == *circle;
+}

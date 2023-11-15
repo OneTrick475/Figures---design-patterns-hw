@@ -180,6 +180,9 @@ TEST_CASE("Circle toString works correctly") {
 	REQUIRE(circle.ToString() == "circle 3.5");
 }
 
+TEST_CASE("Polymorphic == for figure") {
+
+}
 
 TEST_CASE("Figure factory from string") {
 	SECTION("create triangle") {
@@ -251,5 +254,17 @@ TEST_CASE("Stream figure factory") {
 	}
 }
 
+TEST_CASE("Abstract factory") {
+	SECTION("creates stream factory that works") {
+		std::ofstream os("C:\\Users\\Ivan Bukev\\source\\repos\\Figures---design-patterns-hw3\\src\\test.txt");
+		os << "triangle 2.1 2.3 3.1\ncircle 1.1";
+		os.close();
 
+		std::stringstream ss("test.txt");
+		auto fac = FigureFactoryFactory::create("file", ss);
+		auto tri = fac.get()->createFigure();
+		auto circle = fac.get()->createFigure();
+		REQUIRE((tri->ToString() == "triangle 2.1 2.3 3.1" && circle->ToString() == "circle 1.1"));
+	}
+}
 
