@@ -12,14 +12,14 @@ std::unique_ptr<FigureFactory> FigureFactoryFactory::create(const std::string ty
 		return std::make_unique<StreamFigureFactory>(StreamFigureFactory(std::cin));
 	}
 	if (type == "file") {
+		std::cout << "enter file name\n";
 		std::string fileName;
 		std::getline(is, fileName);
-		std::ifstream file(fileName);
+		std::ifstream file("D:\\" + fileName);
 
 		if (!file.is_open()) {
 			throw std::runtime_error("couldnt open file");
 		}
-
 
 		return std::unique_ptr<StreamFigureFactory>(new StreamFigureFactory(std::move(file)));
 	}

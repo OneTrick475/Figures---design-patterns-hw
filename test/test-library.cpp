@@ -8,7 +8,9 @@
 #include "figures/StreamFigureFactory.h"
 #include <fstream>
 #include <figures/FigureFactoryFactory.h>
-	
+
+#include "figures/RandomFigureFactory.h"
+
 TEST_CASE("Triangle constructor orders parameters") {
 	Triangle first(4, 2, 3);
 	Triangle second(2, 3, 4);
@@ -271,3 +273,26 @@ TEST_CASE("Abstract factory") {
 	}
 }
 
+TEST_CASE("Random factory") {
+	SECTION("creates triangle if random gives 0") {
+		RandomFigureFactory fac = RandomFigureFactory(0, 0);
+
+		auto fig = fac.createFigure();
+
+		REQUIRE(dynamic_cast<Triangle*>(fig.get()));
+	}
+	SECTION("creates rectangle if random gives 1") {
+		RandomFigureFactory fac = RandomFigureFactory(1, 1);
+
+		auto fig = fac.createFigure();
+
+		REQUIRE(dynamic_cast<Rectangle*>(fig.get()));
+	}
+	SECTION("creates circle if random gives 2") {
+		RandomFigureFactory fac = RandomFigureFactory(2, 2);
+
+		auto fig = fac.createFigure();
+
+		REQUIRE(dynamic_cast<Circle*>(fig.get()));
+	}
+}

@@ -6,6 +6,7 @@ set_target_properties(samplelib PROPERTIES OUTPUT_NAME "sample")
 target_sources(
     samplelib
     PRIVATE
+        "CLI.h"
         "library.cpp"
         "library.h"
         "figures/Triangle.h"
@@ -13,7 +14,7 @@ target_sources(
         "doubleEQ.cpp"
         "figures/Rectangle.h"
         "figures/Rectangle.cpp"
- "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp")
+ "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp" "CLI.cpp")
 
 
 # Executable target for the application
@@ -30,8 +31,9 @@ target_link_libraries(
 target_sources(
     application
     PRIVATE
+        "CLI.h"
         "application.cpp"
         "figures/Triangle.h"    
         "doubleEQ.cpp"
         "figures/Rectangle.h"
-     "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp" )
+     "figures/Circle.h" "figures/Circle.cpp" "figures/FigureFactory.h" "figures/FigureFactory.cpp" "figures/StreamFigureFactory.h" "figures/StreamFigureFactory.cpp" "figures/RandomFigureFactory.h" "figures/RandomFigureFactory.cpp" "figures/FigureFactoryFactory.h" "figures/FigureFactoryFactory.cpp"  "CLI.cpp")

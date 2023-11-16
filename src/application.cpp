@@ -8,6 +8,8 @@
 #include "figures/RandomFigureFactory.h"
 #include <figures/StreamFigureFactory.h>
 
+#include "CLI.h"
+
 namespace fs = std::filesystem;
 
 void displayUsage(const char* executablePath)
@@ -27,9 +29,7 @@ void displayUsage(const char* executablePath)
 
 int main()
 {
-	std::stringstream file("C:\\Users\\Ivan Bukev\\Desktop\\simple\\src\\test.txt");
+	CLI cli;
+	cli.run();
 
-	std::unique_ptr<FigureFactory> fac = FigureFactoryFactory::create("file", file);
-
-	std::cout << fac.get()->createFigure()->ToString();
 }
