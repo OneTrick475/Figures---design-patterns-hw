@@ -185,8 +185,25 @@ TEST_CASE("Circle toString works correctly") {
 	REQUIRE(circle.ToString() == "circle 3.5");
 }
 
-TEST_CASE("Polymorphic == for figure") {
+TEST_CASE("Figure equals") {
+	SECTION("Same figures") {
+		Figure* first = new Triangle(1, 3.5, 4);
+		Figure* second = new Triangle(1, 3.5, 4);
 
+		REQUIRE(first->equals(second));
+	}
+	SECTION("Same type but different sides") {
+		Figure* first = new Triangle(1, 3.5, 4);
+		Figure* second = new Triangle(1, 2.5, 3);
+
+		REQUIRE(!first->equals(second));
+	}
+	SECTION("Different types") {
+		Figure* first = new Triangle(1, 3.5, 4);
+		Figure* second = new Rectangle(1, 2.5);
+
+		REQUIRE(!first->equals(second));
+	}
 }
 
 TEST_CASE("Figure factory from string") {
@@ -265,7 +282,7 @@ TEST_CASE("Abstract factory") {
 		os << "triangle 2.1 2.3 3.1\ncircle 1.1";
 		os.close();
 
-		std::stringstream ss("D:\\test.txt");
+		std::stringstream ss("test.txt");
 		auto fac = FigureFactoryFactory::create("file", ss);
 		auto tri = fac.get()->createFigure();
 		auto circle = fac.get()->createFigure();

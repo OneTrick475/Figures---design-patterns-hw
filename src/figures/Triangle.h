@@ -18,7 +18,7 @@ public:
 
 	std::string ToString() const override;
 
-	bool operator==(Figure* other) const override;
+	bool equals(Figure* other) const override;
 
 	bool operator==(const Triangle& other) const;
 };

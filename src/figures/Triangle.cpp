@@ -36,7 +36,7 @@ std::string Triangle::ToString() const {
 	return "triangle " + ss.str();
 }
 
-bool Triangle::operator==(Figure* other) const {
+bool Triangle::equals(Figure* other) const {
 	Triangle* tri = dynamic_cast<Triangle*>(other);
 
 	if (!tri) {

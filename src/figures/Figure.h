@@ -10,7 +10,7 @@ public:
 
 	virtual std::string ToString() const = 0;
 
-	virtual bool operator==(Figure* other) const = 0;
+	virtual bool equals(Figure* other) const = 0;
 
 	virtual ~Figure() = default;
 };

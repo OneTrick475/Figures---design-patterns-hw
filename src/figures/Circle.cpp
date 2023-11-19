@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include <iostream>
+#include <memory>
 #include "Figure.h"
 #include "../doubleEQ.h"
 #define _USE_MATH_DEFINES
@@ -31,7 +32,7 @@ bool Circle::operator==(const Circle& other) const {
 	return doublesEQ(r, other.r) ;
 }
 
-bool Circle::operator==(Figure* other) const {
+bool Circle::equals(Figure* other) const {
 	Circle* circle = dynamic_cast<Circle*>(other);
 
 	if (!circle) {

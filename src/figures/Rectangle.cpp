@@ -30,7 +30,7 @@ bool Rectangle::operator==(const Rectangle& other) const {
 	return doublesEQ(a, other.a) && doublesEQ(b, other.b);
 }
 
-bool Rectangle::operator==(Figure* other) const {
+bool Rectangle::equals(Figure* other) const {
 	Rectangle* rec = dynamic_cast<Rectangle*>(other);
 
 	if (!rec) {
